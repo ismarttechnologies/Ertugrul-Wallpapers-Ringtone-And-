@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabBackground="@drawable/tab_background_color_selector"
+            app:tabIconTint="@color/tab_content_color_selector"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/grey"
+            >
+
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/wallpaper"
+                android:text="Wallpapers"
+
+
+                />
+
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/ringtone"
+                android:text="Ringtone"
+                />
+            <com.google.android.material.tabs.TabItem
+                android:icon="@drawable/calendar_icon"
+                android:text="Status"
+                />
+
+        </com.google.android.material.tabs.TabLayout>
+
+    </androidx.viewpager.widget.ViewPager>
+
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/tabs"-->
+<!--        style="@style/Widget.MaterialComponents.TabLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:icon="@drawable/settings"-->
+<!--        android:text="Wallpapers"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content" />-->
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:icon="@drawable/reward"-->
+<!--        android:text="Ringtone"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        />-->
+<!--    <com.google.android.material.tabs.TabItem-->
+<!--        android:icon="@drawable/calendar_icon"-->
+<!--        android:text="Status"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        />-->
+
+<!--    </com.google.android.material.tabs.TabLayout>-->
+
+</LinearLayout>
+
+<!--    https://github.com/material-components/material-components-android/blob/master/docs/components/TabLayout.md-->

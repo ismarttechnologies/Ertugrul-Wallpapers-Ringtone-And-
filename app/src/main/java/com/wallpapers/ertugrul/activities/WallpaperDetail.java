@@ -15,12 +15,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.wallpapers.ertugrul.R;
 
 public class WallpaperDetail extends AppCompatActivity {
 
-    FloatingActionButton set_wallpaper_home, set_wallpaper_lock;
+    FloatingActionsMenu fab_menu;
+    FloatingActionButton set_wallpaper_home, set_wallpaper_lock,share_whatsapp,share_facebook;
     String path = "";
     ImageView image_wallpaper;
     Bitmap image_bitmap;
@@ -32,19 +34,18 @@ public class WallpaperDetail extends AppCompatActivity {
         setContentView(R.layout.wallpaper_detail);
 
 
+
+
         image_wallpaper = findViewById(R.id.image);
-
-
-
-        setWallpapers();
+       setWallpapers();
     }
 
 
     public void setWallpapers(){
 
 
-        set_wallpaper_home = findViewById(R.id.set_wallpaper_home);
-        set_wallpaper_lock = findViewById(R.id.set_wallpaper_lock);
+        set_wallpaper_home = findViewById(R.id.fab2);
+        set_wallpaper_lock = findViewById(R.id.fab1);
 
         image_bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ertugrul);
 
@@ -84,6 +85,7 @@ public class WallpaperDetail extends AppCompatActivity {
 
             }
         });
+
 
 
         set_wallpaper_lock.setOnClickListener(new View.OnClickListener() {
@@ -176,4 +178,5 @@ public class WallpaperDetail extends AppCompatActivity {
 //            image_wallpaper.setImageDrawable(placeHolderDrawable);
 //        }
 //    };
+
 }

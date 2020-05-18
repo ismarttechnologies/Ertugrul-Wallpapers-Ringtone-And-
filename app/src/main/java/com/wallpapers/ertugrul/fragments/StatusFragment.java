@@ -310,48 +310,6 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
     }
 
 
-    public void shareImage(String url) {
-        Picasso.get().load(url).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                try {
-                    File mydir = new File(Environment.getExternalStorageDirectory() + "/Ertugrul Wallpapers And Status");
-                    if (!mydir.exists()) {
-                        mydir.mkdirs();
-                    }
-
-                    fileUri = mydir.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
-                    FileOutputStream outputStream = new FileOutputStream(fileUri);
-
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    outputStream.flush();
-                    outputStream.close();
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
-                Uri uri= Uri.parse(MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), BitmapFactory.decodeFile(fileUri),null,null));
-                // use intent to share image
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("image/*");
-                share.putExtra(Intent.EXTRA_STREAM, uri);
-                startActivity(Intent.createChooser(share, "Share Image"));
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                e.printStackTrace();
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-
-            }
-        });
-    }
-
-
     private Fetch fetch;
 
 //    OkHttpClient okHttpClient = new OkHttpClient.Builder().build();

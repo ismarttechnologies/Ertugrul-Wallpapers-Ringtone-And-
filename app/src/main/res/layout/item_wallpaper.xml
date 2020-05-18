@@ -3,20 +3,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?attr/selectableItemBackground"
-    card_view:cardBackgroundColor="@color/white"
+    card_view:cardBackgroundColor="@color/grey"
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="2dp"
     card_view:cardMaxElevation="2dp"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+
+    <ImageView
+        android:id="@+id/placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/image_placeholder"
+        android:layout_gravity="center"
+        />
 
 
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
+        android:layout_height="@dimen/_320sdp"
         android:scaleType="fitXY"
-        android:src="@drawable/ertugrul"
         />
 
 

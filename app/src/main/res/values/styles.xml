@@ -22,4 +22,9 @@
         <item name="tabIndicatorColor">@android:color/holo_red_dark</item>
     </style>
 
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/fab_label</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

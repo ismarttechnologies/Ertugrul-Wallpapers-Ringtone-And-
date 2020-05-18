@@ -105,7 +105,12 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
 
         wallpapers_data = new ArrayList<Wallpaper>();
 
-        getWallpapers();
+//        getWallpapers();
+        for (int i=0; i<10; i++) {
+            wallpapers_data.add(new Wallpaper("1", "Wallpaper 1", "https://image.winudf.com/v2/image1/Y29tLmVydHVncnVsLnR1cmNfc2NyZWVuXzNfMTU1Mjg1OTM1M18wNTY/screen-3.jpg?fakeurl=1&type=.jpg"));
+        }
+
+        setAdapter();
 
         return root;
     }
@@ -120,12 +125,9 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
         wallpapers_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-//                Toast.makeText(getActivity(), ((TextView) v.findViewById(R.id.grid_item_label)) .getText(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getActivity(), wallpapers_data.get(position).getName(), Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getContext(), WallpaperDetail.class);
-                intent.putExtra("NAME", wallpapers_data.get(position).getName());
-                intent.putExtra("URL", wallpapers_data.get(position).getImage());
+                intent.putExtra("wallpaper", wallpapers_data.get(position));
                 startActivity(intent);
 
 
@@ -133,6 +135,10 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
         });
 
         isPermissionGranted();
+
+
+
+
     }
 
 
@@ -221,11 +227,6 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
                     getActivity().checkSelfPermission(Manifest.permission.WRITE_SETTINGS) == PackageManager.PERMISSION_GRANTED ) {
                 Log.v("TAG", "Permission is granted");
 
-//                PromptPicture promptPicture = new PromptPicture(getActivity());
-//                promptPicture.setCanceledOnTouchOutside(true);
-//                promptPicture.show();
-//                promptPicture.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
             } else {
                 Log.v("TAG", "Permission is revoked");
                 // CHECK IF USER CHECKED THE NEVER ASK AGAIN THEN IMPLEMENT THE CUSTOM FUNCTIONALITY
@@ -250,22 +251,6 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
 
                         }
                     });
-
-//                    dialo("Camera and Storage Permission required, click YES to grant the permission from settings and No to cancel.", GenaricConstants.BUTTONS_YES_NO, new OnSuccessFailureCallBack() {
-//                        @Override
-//                        public void confirm() {
-//                            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//                            Uri uri = Uri.fromParts("package", getActivity().getPackageName(), null);
-//                            intent.setData(uri);
-//                            startActivityForResult(intent, 1000);
-//                        }
-//
-//                        @Override
-//                        public void cancel() {
-//
-//                        }
-//                    });
-
                 } else {
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_SETTINGS}, 1);
                 }

@@ -50,7 +50,7 @@ public class WallpaperAdapter extends BaseAdapter {
             final ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.image);
 
-            String imageAddress = wallpapers_data.get(position).getName();
+            String imageAddress = wallpapers_data.get(position).getImage();
 
 
             Picasso.get()

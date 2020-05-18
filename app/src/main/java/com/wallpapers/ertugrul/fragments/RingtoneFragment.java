@@ -164,7 +164,6 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 //    }
 
 
-
     private void setAdapter() {
 
         adapter = new RingtoneAdapter(getActivity(), dataList, this);
@@ -412,11 +411,10 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
     private void getRingtones() {
         if (!checkConnection(getContext())){
-            showNoInternetDialog(getActivity(), "No internet Connection", "Close");
+//            showNoInternetDialog(getActivity(), "No internet Connection", "Close");
 
             return;
         }
-
 
 //        showProgressDialog(getResources().getString(R.string.loading));
 

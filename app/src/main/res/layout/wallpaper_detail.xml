@@ -2,87 +2,157 @@
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
-    android:background="@color/grey"
+    xmlns:fab="http://schemas.android.com/tools"
+    android:background="@color/light_grey"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:foreground="?attr/selectableItemBackground"
-        card_view:cardBackgroundColor="@color/white"
-        card_view:cardCornerRadius="20dp"
-        card_view:cardElevation="4dp"
-        card_view:cardMaxElevation="4dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="80dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@color/white"
+            card_view:cardCornerRadius="20dp"
+            card_view:cardElevation="4dp"
+            card_view:cardMaxElevation="4dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/ertugrul"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        >
 
 
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:src="@drawable/ertugrul"
-            />
+            android:id="@+id/float_set"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/floating_circle"
+            android:elevation="8dp"
+            android:scaleType="center"
+            android:src="@drawable/set_icon" />
 
-
-    </androidx.cardview.widget.CardView>
-
-
-    <LinearLayout
-        android:id="@+id/wallpaper_btns"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:weightSum="3.3"
-        >
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/set_wallpaper_home"
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            app:srcCompact="@android:drawable/ic_menu_camera"
-            style="@style/Widget.Design.FloatingActionButton"
-            />
+            android:id="@+id/fab_menu_set"
+            android:layout_marginLeft="40dp"
+            card_view:fab_addButtonSize="mini"
+            android:layout_alignParentBottom="true"
+            card_view:fab_labelsPosition="right"
+            card_view:fab_addButtonColorNormal="@color/colorPrimaryDark"
+            card_view:fab_labelStyle="@style/menu_labels_style"
+            card_view:fab_addButtonColorPressed="@color/uvv_black">
 
-        <View
-            android:layout_height="1dp"
-            android:layout_width="0dp"
-            android:layout_weight=".1"
-            />
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab1"
+                card_view:fab_colorNormal="@color/white"
+                card_view:fab_colorPressed="@color/colorPrimaryDark"
+                card_view:fab_icon="@drawable/secure"
+                card_view:fab_title="@string/fab_title2"
+                card_view:fab_size="mini"
+                />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/set_wallpaper_lock"
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fab2"
+                card_view:fab_colorNormal="@color/white"
+                card_view:fab_colorPressed="@color/colorPrimaryDark"
+                card_view:fab_icon="@drawable/wall"
+                card_view:fab_title="@string/fab_title"
+                card_view:fab_size="mini"
+                />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+
+        <ImageView
+            android:id="@+id/float_share"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/floating_circle"
+            android:elevation="8dp"
+            android:scaleType="center"
+            android:src="@drawable/share_icon" />
+
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            app:srcCompact="@android:drawable/ic_menu_camera"
-            style="@style/Widget.Design.FloatingActionButton"
-            />
-
-    </LinearLayout>
-
-
-<!--    <com.google.android.gms.ads.AdView-->
-<!--        xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-<!--        android:id="@+id/adView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        ads:adSize="SMART_BANNER"-->
-<!--        ads:adUnitId="ca-app-pub-3896626396265093/5048876739">-->
-<!--    </com.google.android.gms.ads.AdView>-->
+            android:id="@+id/fab_menu_share"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentRight="true"
+            fab:fab_icon="@drawable/ic_launcher"
+            card_view:fab_addButtonColorNormal="@color/colorPrimaryDark"
+            card_view:fab_labelStyle="@style/menu_labels_style"
+            card_view:fab_addButtonSize="mini"
+            card_view:fab_addButtonColorPressed="@color/uvv_black"
+            >
 
 
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                card_view:fab_colorNormal="@color/white"
+                card_view:fab_colorPressed="@color/colorPrimaryDark"
+                card_view:fab_icon="@drawable/sociall"
+                card_view:fab_title="@string/fab_title4"
+                card_view:fab_size="mini">
+
+            </com.getbase.floatingactionbutton.FloatingActionButton>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/whatsapp"
+                card_view:fab_colorNormal="@color/white"
+                card_view:fab_colorPressed="@color/colorPrimaryDark"
+                card_view:fab_icon="@drawable/social"
+                card_view:fab_title="@string/fab_title3"
+                card_view:fab_size="mini"
+                >
+
+            </com.getbase.floatingactionbutton.FloatingActionButton>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </RelativeLayout>
 </RelativeLayout>

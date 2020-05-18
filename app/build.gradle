@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -29,6 +30,10 @@ allprojects {
     repositories {
         maven { url "https://jitpack.io" }
         mavenCentral()
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
 }
 
@@ -51,5 +56,13 @@ dependencies {
     implementation 'com.linsea:universalvideoview:1.1.0@aar'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
+    implementation 'com.karumi:dexter:4.2.0'
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    implementation 'com.squareup.okhttp:okhttp:2.5.0'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 }
+apply plugin: 'com.google.gms.google-services'
+

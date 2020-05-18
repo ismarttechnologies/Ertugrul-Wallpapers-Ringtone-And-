@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.universalvideoview.UniversalVideoView;
 import com.wallpapers.ertugrul.R;
+import com.wallpapers.ertugrul.model.Ringtone;
 import com.wallpapers.ertugrul.model.Status;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +39,7 @@ import static android.content.ContentValues.TAG;
 
 public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.DriverViewHolder> {
 
-    private ArrayList<Status> list_data;
+    private ArrayList<Ringtone> list_data;
     private Context context;
     RingtoneAdapter.OnItemListner OnItemListner;
 
@@ -47,13 +48,13 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
     private Handler handler;
     Runnable updateTimeTask;
     boolean isPlay;
-    GifDrawable gifDrawable;
 
     public interface OnItemListner {
-        void setRingtone(Status status);
+        void setRingtone(Ringtone ringtone);
+        void likeRingtone(Ringtone ringtone);
     }
 
-    public RingtoneAdapter(Context context, ArrayList<Status> dataList, RingtoneAdapter.OnItemListner OnItemCheckListner) {
+    public RingtoneAdapter(Context context, ArrayList<Ringtone> dataList, RingtoneAdapter.OnItemListner OnItemCheckListner) {
         this.list_data = dataList;
         this.context = context;
         this.OnItemListner = OnItemCheckListner;
@@ -74,26 +75,13 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
     public void onBindViewHolder(final RingtoneAdapter.DriverViewHolder holder, final int position) {
 
 
-        try {
-
-
-            //resource (drawable or raw)
-            gifDrawable = new GifDrawable(context.getResources(), R.drawable.audio_gif);
-            holder.gif_audio.setImageDrawable(gifDrawable);
-            gifDrawable.stop();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
         holder.play_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
                 if (!isPlay) {
                     if (last_position==position){
-                        gifDrawable.start();
+                        holder.gifDrawable.start();
 
                         isPlay = true;
                         playAudio(holder, list_data.get(position), position);
@@ -103,16 +91,18 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
                         holder.mVideoView.setAutoRotation(false);
                         holder.mVideoView.setFitXY(true);
 
-//        holder.mVideoView.setFullscreen(false, OrientationHelper.VERTICAL);
                         Uri uri = Uri.parse(list_data.get(position).getUrl());
                         holder.mVideoView.setVideoURI(uri);
+
+
+//        holder.mVideoView.setFullscreen(false, OrientationHelper.VERTICAL);
 
                         isPlay = true;
                         playAudio(holder, list_data.get(position), position);
                         last_position = position;
                     }
                 } else {
-                    gifDrawable.stop();
+                    holder.gifDrawable.stop();
                     isPlay = false;
                     holder.play_pause.setBackgroundResource(R.drawable.play);
                     holder.mVideoView.pause();
@@ -130,6 +120,15 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
             }
         });
 
+        holder.likes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                OnItemListner.likeRingtone(list_data.get(position));
+
+            }
+        });
+
 
     }
 
@@ -140,23 +139,26 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
 
 
     public class DriverViewHolder extends RecyclerView.ViewHolder {
+
         public ImageView set_tone;
 
         View mBottomLayout;
         View mVideoLayout;
         UniversalVideoView mVideoView;
         ImageView play_pause;
+        ImageView likes;
         TextView tvTime;
         SeekBar seekBar;
         CircleProgressView progress_dialog;
         GifImageView gif_audio;
-
+        GifDrawable gifDrawable;
 
 
         public DriverViewHolder(View view) {
             super(view);
             set_tone = view.findViewById(R.id.set_tone);
             play_pause = view.findViewById(R.id.ivPlayPause);
+            likes = view.findViewById(R.id.likes);
             tvTime = view.findViewById(R.id.tvTime);
             seekBar = view.findViewById(R.id.seekBar);
             progress_dialog = view.findViewById(R.id.progress_dialog);
@@ -164,13 +166,24 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
             gif_audio =  view.findViewById(R.id.gif_audio);
 //            mMediaController = (UniversalMediaController) view.findViewById(R.id.media_controller);
 
+            try {
+
+                //resource (drawable or raw)
+                gifDrawable = new GifDrawable(context.getResources(), R.drawable.audio_gif);
+                gif_audio.setImageDrawable(gifDrawable);
+                gifDrawable.stop();
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }
     }
 
 
 
 
-    public void playAudio(final RingtoneAdapter.DriverViewHolder holder, Status video_status, int position){
+    public void playAudio(final RingtoneAdapter.DriverViewHolder holder, Ringtone video_status, int position){
 
         holder.play_pause.setBackgroundResource(R.drawable.pause);
         holder.mVideoView.start();
@@ -221,7 +234,7 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
                 Log.d(TAG, "onStart UniversalVideoView callback");
                 holder.progress_dialog.stopSpinning();
                 holder.progress_dialog.setVisibility(View.GONE);
-                gifDrawable.start();
+                holder.gifDrawable.start();
 
                 handler.postDelayed(updateTimeTask, 900);
 
@@ -232,7 +245,7 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
                 Log.d(TAG, "onBufferingStart UniversalVideoView callback");
                 holder.progress_dialog.spin();
                 holder.progress_dialog.setVisibility(View.VISIBLE);
-                gifDrawable.stop();
+                holder.gifDrawable.stop();
 
 
             }
@@ -242,7 +255,7 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
                 Log.d(TAG, "onBufferingEnd UniversalVideoView callback");
                 holder.progress_dialog.stopSpinning();
                 holder.progress_dialog.setVisibility(View.GONE);
-                gifDrawable.start();
+                holder.gifDrawable.start();
 
 
             }
@@ -277,7 +290,6 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
         });
 
 
-
         holder.mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -293,6 +305,11 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
         });
 
     }
+
+
+
+
+
 
 
     public static String getDateFromTimestamp(String dateInTimeStamp, String format) {

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rlParent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_card_number_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_20sdp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardCornerRadius="@dimen/_10sdp"
+        card_view:cardElevation="@dimen/_2sdp"
+        card_view:cardMaxElevation="@dimen/_2sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="Notification"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Message"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:weightSum="2"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnOk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blue"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:theme="@style/CardView"
+                    card_view:cardCornerRadius="@dimen/_10sdp"
+                    card_view:cardUseCompatPadding="true"
+                    >
+                    <!--android:foreground="?android:attr/selectableItemBackground"-->
+
+                    <TextView
+                        android:id="@+id/tvYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_9sdp"
+                        android:paddingLeft="@dimen/_14sdp"
+                        android:paddingRight="@dimen/_14sdp"
+                        android:text="View"
+                        android:textAllCaps="true"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:backgroundTint="@color/blue"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:theme="@style/CardView"
+                    card_view:cardCornerRadius="@dimen/_10sdp"
+                    card_view:cardUseCompatPadding="true"
+                    >
+                    <!--android:foreground="?android:attr/selectableItemBackground"-->
+
+
+                    <TextView
+                        android:id="@+id/tvNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingBottom="@dimen/_9sdp"
+                        android:paddingTop="@dimen/_9sdp"
+                        android:paddingLeft="@dimen/_14sdp"
+                        android:paddingRight="@dimen/_14sdp"
+                        android:text="CANCEL"
+                        android:textAllCaps="true"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp" />
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

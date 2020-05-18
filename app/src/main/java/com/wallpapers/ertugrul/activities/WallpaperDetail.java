@@ -24,6 +24,8 @@ public class WallpaperDetail extends AppCompatActivity {
     String path = "";
     ImageView image_wallpaper;
     Bitmap image_bitmap;
+//    private AdView mAdView;
+
 
 
     @Override
@@ -33,7 +35,9 @@ public class WallpaperDetail extends AppCompatActivity {
 
 
         image_wallpaper = findViewById(R.id.image);
-
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
 
         setWallpapers();

@@ -1,12 +1,17 @@
 package com.wallpapers.ertugrul.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.wallpapers.ertugrul.R;
 import com.wallpapers.ertugrul.model.Wallpaper;
 
@@ -42,10 +47,16 @@ public class WallpaperAdapter extends BaseAdapter {
 //            textView.setText(mobileValues[position]);
 
             // set image based on selected text
-            ImageView imageView = (ImageView) gridView
+            final ImageView imageView = (ImageView) gridView
                     .findViewById(R.id.image);
 
-            String mobile = wallpapers_data.get(position).getName();
+            String imageAddress = wallpapers_data.get(position).getImage();
+
+
+            Picasso.get()
+                    .load(imageAddress)
+                    .priority(Picasso.Priority.HIGH)
+                    .into(imageView);
 
         } else {
             gridView = (View) convertView;

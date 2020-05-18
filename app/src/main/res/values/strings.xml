@@ -3,8 +3,9 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="fab_title">SET WALLPAPER</string>
-    <string name="fab_title3">SHARE TO WHATSAPP</string>
-    <string name="fab_title4">SHARE TO FACEBOOK</string>
+    <string name="fab_title3">WHATSAPP</string>
+    <string name="fab_title4">FACEBOOK</string>
     <string name="fab_title2">SET LOCKSCREEN</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="loading">Loading, Please wait...</string>
 </resources>

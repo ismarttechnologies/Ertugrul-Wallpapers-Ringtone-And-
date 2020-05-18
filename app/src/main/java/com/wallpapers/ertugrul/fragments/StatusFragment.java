@@ -29,6 +29,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.tonyodev.fetch2.Download;
@@ -46,18 +51,23 @@ import com.wallpapers.ertugrul.R;
 import com.wallpapers.ertugrul.adapters.StatusAdapter;
 import com.wallpapers.ertugrul.model.PageViewModel;
 import com.wallpapers.ertugrul.model.Status;
+import com.wallpapers.ertugrul.model.Wallpaper;
+import com.wallpapers.ertugrul.utilities.OkhttpUtilities;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import at.grabner.circleprogress.CircleProgressView;
 
-public class StatusFragment extends Fragment implements StatusAdapter.OnItemListner {
+public class StatusFragment extends BaseFragment implements StatusAdapter.OnItemListner {
     private static final String TAG = "SpeedDial";
     private PageViewModel pageViewModel;
 
@@ -108,8 +118,8 @@ public class StatusFragment extends Fragment implements StatusAdapter.OnItemList
 
 
         dataList = new ArrayList<Status>();
-        setAdapter();
 
+        getStatus();
 
         return root;
     }
@@ -117,11 +127,6 @@ public class StatusFragment extends Fragment implements StatusAdapter.OnItemList
 
 
     private void setAdapter() {
-
-        dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video2", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video3", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video4", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"));
 
         adapter = new StatusAdapter(getActivity(), dataList, this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
@@ -141,11 +146,9 @@ public class StatusFragment extends Fragment implements StatusAdapter.OnItemList
         }
         else
         {
-
             // Code for Below 23 API Oriented Device
             // Do next code
         }
-
     }
 
 
@@ -175,11 +178,96 @@ public class StatusFragment extends Fragment implements StatusAdapter.OnItemList
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == 100) {
             if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED
+                    ) {
                 // do something
             }
             return;
         }
+    }
+
+
+    private void getStatus() {
+        if (!checkConnection(getContext())){
+//            showNoInternetDialog(getActivity(), "Please connect to your internet.", "OK");
+            return;
+        }
+
+//        showProgressDialog(getResources().getString(R.string.loading));
+        RequestBody formBody = new FormEncodingBuilder()
+                .build();
+
+        //OkHttpClient okHttpClient = OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
+        final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
+        final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
+                .url("http://111.88.246.218/api/media/getVideo")
+                .get()
+                .build();
+
+        okHttpClient.setConnectTimeout(60, TimeUnit.SECONDS);
+        okHttpClient.setReadTimeout(60, TimeUnit.SECONDS);
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(com.squareup.okhttp.Request request, final IOException e) {
+//                Log.e("TAG", e.toString() + "");
+                Log.e("TAG",e.toString()+"");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        hideprogressDialog();
+
+                        String message;
+                        if (e.toString().contains("failed to connect"))
+                            message = "Server is not responding";
+                        else
+                            message = e.getMessage();
+
+                        showNoInternetDialog(getActivity(), message, "OK");
+
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                final String requestResult = response.body().string();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Log.e("onResponse", "response: " + requestResult);
+                        try {
+//                            hideprogressDialog();
+
+                            JSONObject obj=new JSONObject(requestResult);
+                            JSONArray data_array=obj.optJSONArray("Result");
+
+                            if (data_array!=null && data_array.length()>0){
+                                for (int i=0; i<data_array.length(); i++) {
+
+                                    if (i!=0 && i%3==0){
+                                        dataList.add(new Status("", "", "Banner"));
+
+                                    }
+//                                    dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+
+                                    dataList.add(new Status("Wallpaper"+data_array.getJSONObject(i).optString("Id"), "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", data_array.getJSONObject(i).optString("Url")));
+                                }
+
+                                setAdapter();
+
+                            }
+
+                        } catch (Exception e) {
+//                            hideprogressDialog();
+                            e.printStackTrace();
+                            return;
+                        }
+                    }
+                });
+            }
+        });
     }
 
     String fileUri;
@@ -219,48 +307,6 @@ public class StatusFragment extends Fragment implements StatusAdapter.OnItemList
         share.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(share, "Share Image"));
 
-    }
-
-
-    public void shareImage(String url) {
-        Picasso.get().load(url).into(new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                try {
-                    File mydir = new File(Environment.getExternalStorageDirectory() + "/Ertugrul Wallpapers And Status");
-                    if (!mydir.exists()) {
-                        mydir.mkdirs();
-                    }
-
-                    fileUri = mydir.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
-                    FileOutputStream outputStream = new FileOutputStream(fileUri);
-
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    outputStream.flush();
-                    outputStream.close();
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
-                Uri uri= Uri.parse(MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), BitmapFactory.decodeFile(fileUri),null,null));
-                // use intent to share image
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("image/*");
-                share.putExtra(Intent.EXTRA_STREAM, uri);
-                startActivity(Intent.createChooser(share, "Share Image"));
-            }
-
-            @Override
-            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                e.printStackTrace();
-
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-
-            }
-        });
     }
 
 

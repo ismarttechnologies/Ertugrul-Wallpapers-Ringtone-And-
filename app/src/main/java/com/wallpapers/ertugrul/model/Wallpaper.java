@@ -1,6 +1,8 @@
 package com.wallpapers.ertugrul.model;
 
-public class Wallpaper {
+import java.io.Serializable;
+
+public class Wallpaper implements Serializable {
 
     String id;
     String name;

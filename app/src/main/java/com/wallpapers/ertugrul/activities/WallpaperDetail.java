@@ -2,13 +2,21 @@ package com.wallpapers.ertugrul.activities;
 
 import android.app.ProgressDialog;
 import android.app.WallpaperManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -17,15 +25,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import com.wallpapers.ertugrul.R;
+import com.wallpapers.ertugrul.model.Wallpaper;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class WallpaperDetail extends AppCompatActivity {
 
-    FloatingActionsMenu fab_menu;
+    FloatingActionsMenu fab_menu_share, fab_menu_set;
     FloatingActionButton set_wallpaper_home, set_wallpaper_lock,share_whatsapp,share_facebook;
     String path = "";
     ImageView image_wallpaper;
     Bitmap image_bitmap;
+    //    private AdView mAdView;
+    ImageView float_share, float_set;
+    Wallpaper wallpaper_obj;
 
 
     @Override
@@ -33,21 +51,104 @@ public class WallpaperDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wallpaper_detail);
 
+        image_wallpaper = findViewById(R.id.image);
+//        mAdView = view.findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
 
-
+        wallpaper_obj = (Wallpaper)getIntent().getSerializableExtra("wallpaper");
 
         image_wallpaper = findViewById(R.id.image);
-       setWallpapers();
+        setWallpapers();
     }
 
 
     public void setWallpapers(){
 
-
         set_wallpaper_home = findViewById(R.id.fab2);
         set_wallpaper_lock = findViewById(R.id.fab1);
+        fab_menu_share = findViewById(R.id.fab_menu_share);
+        fab_menu_set = findViewById(R.id.fab_menu_set);
 
-        image_bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ertugrul);
+        share_whatsapp = findViewById(R.id.whatsapp);
+        share_facebook = findViewById(R.id.facebook);
+
+        Picasso.get()
+                .load(wallpaper_obj.getImage())
+                .priority(Picasso.Priority.HIGH)
+                .into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        image_bitmap = bitmap;
+                        image_wallpaper.setImageBitmap(bitmap);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        e.printStackTrace();
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+
+                    }
+                });
+
+        fab_menu_share.setLayoutAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                Log.d("############", " "+animation);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        float_share = findViewById(R.id.float_share);
+        float_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fab_menu_share.isExpanded()){
+                    fab_menu_share.collapse();
+                    float_share.setImageResource(R.drawable.share_icon);
+
+                }
+                else {
+                    fab_menu_share.expand();
+                    float_share.setImageResource(R.drawable.cross_icon);
+                }
+            }
+        });
+
+
+        float_set = findViewById(R.id.float_set);
+        float_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fab_menu_set.isExpanded()){
+                    fab_menu_set.collapse();
+                    float_set.setImageResource(R.drawable.set_icon);
+                }
+                else {
+                    fab_menu_set.expand();
+                    float_set.setImageResource(R.drawable.cross_icon);
+                }
+            }
+        });
+
+//        FloatingActionMenu menu = findViewById(R.id.menu);
+//        menu.setIc(getResources().getDrawable(R.drawable.social));
+
+//        fab_menu.setImageDrawable(getResources().getDrawable(R.drawable.social));
 
         set_wallpaper_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +232,63 @@ public class WallpaperDetail extends AppCompatActivity {
 
             }
         });
+
+
+        share_facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImage(image_bitmap, false);
+            }
+        });
+
+        share_whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImage(image_bitmap, true);
+            }
+        });
+
+    }
+
+
+    String fileUri;
+
+    public void shareImage(Bitmap bitmap, boolean is_whatsapp) {
+
+        try {
+            File mydir = new File(Environment.getExternalStorageDirectory() + "/Ertugrul Wallpapers And Status");
+            if (!mydir.exists()) {
+                mydir.mkdirs();
+            }
+
+            fileUri = mydir.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
+            FileOutputStream outputStream = new FileOutputStream(fileUri);
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            outputStream.flush();
+            outputStream.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+//        Uri uri= Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeFile(fileUri),null,null));
+        Uri uri= Uri.parse(fileUri);
+
+        if (is_whatsapp){
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("image/jpeg");
+            share.putExtra(Intent.EXTRA_STREAM, uri);
+            share.setPackage("com.whatsapp");//package name of the app
+            startActivity(Intent.createChooser(share, "Share Image"));
+
+        }
+        else {
+            // use intent to share image
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("image/*");
+            share.putExtra(Intent.EXTRA_STREAM, uri);
+            startActivity(Intent.createChooser(share, "Share Wallpaper"));
+        }
+
     }
 
 

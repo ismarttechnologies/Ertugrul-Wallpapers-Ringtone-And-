@@ -121,10 +121,20 @@
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:weightSum="1"
+                    android:weightSum="2"
                     android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
                     >
+
+                    <ImageView
+                        android:id="@+id/likes"
+                        android:layout_height="30dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:src="@drawable/like_icon"
+
+                        />
 
                     <ImageView
                         android:id="@+id/set_tone"

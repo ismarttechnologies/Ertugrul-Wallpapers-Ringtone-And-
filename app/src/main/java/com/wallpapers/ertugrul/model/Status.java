@@ -11,11 +11,19 @@ public class Status {
     String created_at;
     String total_shared;
     Bitmap bitmap;
+    String type;
 
     public Status(String name, String thumbnail, String url) {
         this.name = name;
         this.thumbnail = thumbnail;
         this.url = url;
+    }
+
+    public Status(String name, String thumbnail, String url, String type) {
+        this.name = name;
+        this.thumbnail = thumbnail;
+        this.url = url;
+        this.type = type;
     }
 
     public Status(String thumbnail, String url) {
@@ -77,5 +85,13 @@ public class Status {
 
     public void setBitmap(Bitmap bitmap) {
         this.bitmap = bitmap;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

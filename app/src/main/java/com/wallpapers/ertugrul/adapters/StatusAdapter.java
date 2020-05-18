@@ -17,8 +17,11 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.universalvideoview.UniversalVideoView;
@@ -46,6 +49,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
     Runnable updateTimeTask;
     boolean isPlay;
 
+
     public interface OnItemListner {
         void onShareImage(Bitmap bitmap);
         void onShareVideo(Status status);
@@ -70,15 +74,23 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
     @Override
     public void onBindViewHolder(final StatusAdapter.DriverViewHolder holder, final int position) {
-//        holder.textName.setText(list_data.get(position).getFirst_name() + " " + list_data.get(position).getLast_name());
-//        holder.textPlace.setText(list_data.get(position).getCity() + ", " + list_data.get(position).getRegion());
-        String imageAddress = list_data.get(position).getThumbnail();
+
+        if (list_data.get(position).getType()!=null && !list_data.get(position).getType().isEmpty() && list_data.get(position).getType().equalsIgnoreCase("Banner")){
+            holder.card_view_outer.setVisibility(View.GONE);
+            holder.adView.setVisibility(View.VISIBLE);
+
+            AdRequest adRequest = new AdRequest.Builder().build();
+            holder.adView.loadAd(adRequest);
+        }
+        else{
+
+            String imageAddress = list_data.get(position).getThumbnail();
 //        imageAddress = WebConstants.USER_PROFILE_URL + imageAddress;
 
 
-        int a = holder.thumbnail.getMeasuredWidth();
-        int b = holder.thumbnail.getMeasuredHeight();
-        String url = list_data.get(position).getUrl();
+            int a = holder.thumbnail.getMeasuredWidth();
+            int b = holder.thumbnail.getMeasuredHeight();
+            String url = list_data.get(position).getUrl();
 
 //        Bitmap bMap = ThumbnailUtils.createVideoThumbnail(list_data.get(position).getUrl(), MediaStore.Video.Thumbnails.MICRO_KIND);
 //        holder.thumbnail.setImageBitmap(bMap);
@@ -92,87 +104,85 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
 
 
-        Picasso.get()
-                .load(imageAddress)
-                .priority(Picasso.Priority.HIGH)
-                .centerCrop()
-                .resize(600, 450)
-                .into(new Target() {
-                    @Override
-                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        list_data.get(position).setBitmap(bitmap);
-                        holder.thumbnail.setImageBitmap(bitmap);
-                    }
+            Picasso.get()
+                    .load(imageAddress)
+                    .priority(Picasso.Priority.HIGH)
+                    .centerCrop()
+                    .resize(600, 450)
+                    .into(new Target() {
+                        @Override
+                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                            list_data.get(position).setBitmap(bitmap);
+                            holder.thumbnail.setImageBitmap(bitmap);
+                        }
 
-                    @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                        e.printStackTrace();
+                        @Override
+                        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                            e.printStackTrace();
 
-                    }
+                        }
 
-                    @Override
-                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-
-                    }
-                });
+                        @Override
+                        public void onPrepareLoad(Drawable placeHolderDrawable) {
 
 
-        holder.like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        }
+                    });
+
+
+            holder.like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                OnItemListner.onShareImage(list_data.get(position).getBitmap());
 
-                Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
-                holder.like.startAnimation(pulse);
+                    Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
+                    holder.like.startAnimation(pulse);
 
-            }
-        });
+                }
+            });
 
 
+            holder.play_pause.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.thumbnail.setVisibility(View.GONE);
+                    if (!isPlay) {
 
-        holder.play_pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        if (last_position==position){
 
-                holder.thumbnail.setVisibility(View.GONE);
-                if (!isPlay) {
-
-                    if (last_position==position){
-
-                        isPlay = true;
-                        showVideo(holder, list_data.get(position), position);
-                    }
-                    else {
+                            isPlay = true;
+                            showVideo(holder, list_data.get(position), position);
+                        }
+                        else {
 //        holder.mVideoView.setMediaController(holder.mMediaController);
 
-                        holder.mVideoView.setAutoRotation(false);
-                        holder.mVideoView.setFitXY(true);
+                            holder.mVideoView.setAutoRotation(false);
+                            holder.mVideoView.setFitXY(true);
 
 //        holder.mVideoView.setFullscreen(false, OrientationHelper.VERTICAL);
-                        Uri uri = Uri.parse(list_data.get(position).getUrl());
-                        holder.mVideoView.setVideoURI(uri);
+                            Uri uri = Uri.parse(list_data.get(position).getUrl());
+                            holder.mVideoView.setVideoURI(uri);
 
-                        isPlay = true;
-                        showVideo(holder, list_data.get(position), position);
-                        last_position = position;
+                            isPlay = true;
+                            showVideo(holder, list_data.get(position), position);
+                            last_position = position;
 
+                        }
+
+                    } else {
+                        isPlay = false;
+                        holder.play_pause.setBackgroundResource(R.drawable.play);
+                        holder.mVideoView.pause();
                     }
-
-                } else {
-                    isPlay = false;
-                    holder.play_pause.setBackgroundResource(R.drawable.play);
-                    holder.mVideoView.pause();
                 }
-            }
-        });
+            });
 
 
 
 
-        holder.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            holder.share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                Intent sendIntent = new Intent();
 //                sendIntent.setAction(Intent.ACTION_SEND);
 //                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
@@ -190,11 +200,11 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 //
 //                context.startActivity(videoshare);
 
+                    OnItemListner.onShareVideo(list_data.get(position));
 
-                OnItemListner.onShareVideo(list_data.get(position));
-
-            }
-        });
+                }
+            });
+        }
 
 
     }
@@ -216,7 +226,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
         TextView tvTime;
         SeekBar seekBar;
         CircleProgressView progress_dialog;
-
+        private AdView adView;
+        CardView card_view_outer;
 
 
         public DriverViewHolder(View view) {
@@ -229,6 +240,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             tvTime = view.findViewById(R.id.tvTime);
             seekBar = view.findViewById(R.id.seekBar);
             progress_dialog = view.findViewById(R.id.progress_dialog);
+            adView = view.findViewById(R.id.adView);
             mVideoView = (UniversalVideoView) view.findViewById(R.id.videoView);
 //            mMediaController = (UniversalMediaController) view.findViewById(R.id.media_controller);
 

@@ -1,0 +1,139 @@
+{
+  "project_info": {
+    "project_number": "923791201286",
+    "firebase_url": "https://technical-projects.firebaseio.com",
+    "project_id": "technical-projects",
+    "storage_bucket": "technical-projects.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923791201286:android:b96d21bb55aac54c",
+        "android_client_info": {
+          "package_name": "com.actechnician.technician"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_aB2Dor6S2IPZKgvJ3Oln_rWN5RJvug"
+        },
+        {
+          "current_key": "AIzaSyDFmKGDvFyMmIDVPGXzCAd5I0O9ZB_5aLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923791201286:android:178c17a9fe220b7d",
+        "android_client_info": {
+          "package_name": "com.ramadanreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_aB2Dor6S2IPZKgvJ3Oln_rWN5RJvug"
+        },
+        {
+          "current_key": "AIzaSyDFmKGDvFyMmIDVPGXzCAd5I0O9ZB_5aLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923791201286:android:da32e3fe48f3f374825f87",
+        "android_client_info": {
+          "package_name": "com.team.my"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_aB2Dor6S2IPZKgvJ3Oln_rWN5RJvug"
+        },
+        {
+          "current_key": "AIzaSyDFmKGDvFyMmIDVPGXzCAd5I0O9ZB_5aLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923791201286:android:e5fc1ba814827e64825f87",
+        "android_client_info": {
+          "package_name": "com.wallpapers.ertugrul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_aB2Dor6S2IPZKgvJ3Oln_rWN5RJvug"
+        },
+        {
+          "current_key": "AIzaSyDFmKGDvFyMmIDVPGXzCAd5I0O9ZB_5aLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

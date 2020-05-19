@@ -13,9 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.varunest.sparkbutton.SparkButton;
+import com.varunest.sparkbutton.SparkButtonBuilder;
 import com.wallpapers.ertugrul.R;
 import com.wallpapers.ertugrul.adapters.TabsPagerAdapter;
 
@@ -38,7 +41,6 @@ public class Home extends AppCompatActivity {
 
 //     toolbar = findViewById(R.id.toolbar_id);
 //     setSupportActionBar(toolbar);
-
 
      shareImage = findViewById(R.id.share_icon);
      shareImage.setOnClickListener(new View.OnClickListener() {

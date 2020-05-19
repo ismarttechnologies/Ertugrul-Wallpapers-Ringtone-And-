@@ -150,6 +150,7 @@
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         app:sparkbutton_activeImage="@drawable/filled"
+
                         app:sparkbutton_inActiveImage="@drawable/unfill"
                         app:sparkbutton_iconSize="35dp"
                         app:sparkbutton_primaryColor="@color/spark_secondary_color"

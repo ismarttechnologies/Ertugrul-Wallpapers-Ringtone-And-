@@ -25,6 +25,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.wallpapers.ertugrul.R;
@@ -44,6 +49,7 @@ public class WallpaperDetail extends AppCompatActivity {
     //    private AdView mAdView;
     ImageView float_share, float_set;
     Wallpaper wallpaper_obj;
+    private AdView mAdView;
 
 
     @Override
@@ -95,6 +101,16 @@ public class WallpaperDetail extends AppCompatActivity {
 
                     }
                 });
+
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         fab_menu_share.setLayoutAnimationListener(new Animation.AnimationListener() {
             @Override

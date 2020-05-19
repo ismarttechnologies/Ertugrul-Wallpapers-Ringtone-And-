@@ -214,6 +214,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
         return list_data.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
 
     public class DriverViewHolder extends RecyclerView.ViewHolder {
         public ImageView like, share, download, thumbnail;
@@ -240,6 +250,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             tvTime = view.findViewById(R.id.tvTime);
             seekBar = view.findViewById(R.id.seekBar);
             progress_dialog = view.findViewById(R.id.progress_dialog);
+            card_view_outer = view.findViewById(R.id.card_view_outer);
             adView = view.findViewById(R.id.adView);
             mVideoView = (UniversalVideoView) view.findViewById(R.id.videoView);
 //            mMediaController = (UniversalMediaController) view.findViewById(R.id.media_controller);

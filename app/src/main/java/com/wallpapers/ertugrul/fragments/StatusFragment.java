@@ -116,10 +116,19 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
         progress_bar.setShowTextWhileSpinning(true); // Show/hide text in spinning mode
         progress_bar.setTextSize(25);
 
-
         dataList = new ArrayList<Status>();
 
-        getStatus();
+//        getStatus();
+
+        for (int i=0; i<25; i++) {
+
+            if (i!=0 && i%7==0){
+                dataList.add(new Status("", "", "", "Banner"));
+            }
+            dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+        }
+
+        setAdapter();
 
         return root;
     }
@@ -180,7 +189,7 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                     && grantResults[1] == PackageManager.PERMISSION_GRANTED
-                    ) {
+            ) {
                 // do something
             }
             return;

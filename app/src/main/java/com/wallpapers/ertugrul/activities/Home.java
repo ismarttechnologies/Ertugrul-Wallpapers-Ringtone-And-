@@ -44,10 +44,12 @@ public class Home extends AppCompatActivity {
      shareImage.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+             final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
              Intent myIntent=new Intent(Intent.ACTION_SEND);
              myIntent.setType("text/plain");
-             String sharebody="your body hair";
-             String sharesub="your sub here";
+             String sharebody="Ertugrul Wallpapers, Ringtones and Status";
+             String sharesub="Your friend is inviting you to download Ertugrul Wallpapers, Ringtones and Status application from play store, \n\n"
+                     +"https://play.google.com/store/apps/details?id=" + appPackageName;
              myIntent.putExtra(Intent.EXTRA_SUBJECT,sharebody);
              myIntent.putExtra(Intent.EXTRA_TEXT,sharesub);
              startActivity(Intent.createChooser(myIntent,"Share Via"));

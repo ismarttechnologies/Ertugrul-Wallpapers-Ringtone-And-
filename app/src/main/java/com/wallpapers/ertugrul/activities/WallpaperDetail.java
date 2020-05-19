@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
@@ -253,14 +254,14 @@ public class WallpaperDetail extends AppCompatActivity {
         share_facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareImage(image_bitmap, false);
+                shareImage(image_bitmap, false, wallpaper_obj.getName());
             }
         });
 
         share_whatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shareImage(image_bitmap, true);
+                shareImage(image_bitmap, true, wallpaper_obj.getName());
             }
         });
 
@@ -269,7 +270,7 @@ public class WallpaperDetail extends AppCompatActivity {
 
     String fileUri;
 
-    public void shareImage(Bitmap bitmap, boolean is_whatsapp) {
+    public void shareImage(Bitmap bitmap, boolean is_whatsapp, String name) {
 
         try {
             File mydir = new File(Environment.getExternalStorageDirectory() + "/Ertugrul Wallpapers And Status");
@@ -277,7 +278,31 @@ public class WallpaperDetail extends AppCompatActivity {
                 mydir.mkdirs();
             }
 
-            fileUri = mydir.getAbsolutePath() + File.separator + System.currentTimeMillis() + ".jpg";
+            fileUri = mydir.getAbsolutePath() + File.separator + name + ".jpg";
+            File image_file = new File(fileUri);
+            if (image_file.exists()){
+//                Uri uri= Uri.fromFile(image_file);
+                Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", image_file);
+
+
+                if (is_whatsapp){
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType("image/jpeg");
+                    share.putExtra(Intent.EXTRA_STREAM, photoURI);
+                    share.setPackage("com.whatsapp");//package name of the app
+                    startActivity(Intent.createChooser(share, "Share Image"));
+
+                }
+                else {
+                    // use intent to share image
+                    Intent share = new Intent(Intent.ACTION_SEND);
+                    share.setType("image/*");
+                    share.putExtra(Intent.EXTRA_STREAM, photoURI);
+                    startActivity(Intent.createChooser(share, "Share Wallpaper"));
+                }
+
+                return;
+            }
             FileOutputStream outputStream = new FileOutputStream(fileUri);
 
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
@@ -286,13 +311,18 @@ public class WallpaperDetail extends AppCompatActivity {
         } catch(IOException e) {
             e.printStackTrace();
         }
+
+        File image_file = new File(fileUri);
 //        Uri uri= Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), BitmapFactory.decodeFile(fileUri),null,null));
-        Uri uri= Uri.parse(fileUri);
+//        Uri uri= Uri.fromFile(image_file);
+        Uri photoURI = FileProvider.getUriForFile(getApplicationContext(), getApplicationContext().getPackageName() + ".provider", image_file);
+
+
 
         if (is_whatsapp){
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("image/jpeg");
-            share.putExtra(Intent.EXTRA_STREAM, uri);
+            share.putExtra(Intent.EXTRA_STREAM, photoURI);
             share.setPackage("com.whatsapp");//package name of the app
             startActivity(Intent.createChooser(share, "Share Image"));
 
@@ -301,7 +331,7 @@ public class WallpaperDetail extends AppCompatActivity {
             // use intent to share image
             Intent share = new Intent(Intent.ACTION_SEND);
             share.setType("image/*");
-            share.putExtra(Intent.EXTRA_STREAM, uri);
+            share.putExtra(Intent.EXTRA_STREAM, photoURI);
             startActivity(Intent.createChooser(share, "Share Wallpaper"));
         }
 

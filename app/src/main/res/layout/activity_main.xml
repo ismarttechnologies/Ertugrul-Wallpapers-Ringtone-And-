@@ -9,8 +9,21 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/toolbar_id"
+        android:fitsSystemWindows="true"
+
         android:theme="@style/AppTheme.AppBarOverlay">
 
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -19,7 +32,31 @@
             android:minHeight="?actionBarSize"
             android:padding="@dimen/appbar_padding"
             android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/share_icon"
+        android:src="@drawable/shareicon"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/appbar_padding"
+        style="@style/AppTheme.AppBarOverlay"
+
+        android:contentDescription="TODO">
+
+    </ImageView>
+    </RelativeLayout>
+
+   </LinearLayout>
+
+
+
 
 
         <com.google.android.material.tabs.TabLayout
@@ -56,6 +93,8 @@
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="wrap_content"-->
         <!--            android:background="?attr/colorPrimary" />-->
+
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager

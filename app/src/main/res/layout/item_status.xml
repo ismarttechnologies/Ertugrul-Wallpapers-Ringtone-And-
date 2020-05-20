@@ -138,17 +138,6 @@
                     >
 
                     <ImageView
-                        android:id="@+id/like"
-                        android:layout_height="@dimen/_25sdp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:src="@drawable/like_icon"
-
-                        />
-
-
-                    <ImageView
                         android:id="@+id/download"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_width="0dp"
@@ -157,6 +146,29 @@
                         android:src="@drawable/like_icon"
 
                         />
+
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/download"-->
+<!--                        android:layout_height="@dimen/_25sdp"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:src="@drawable/like_icon"-->
+
+<!--                        />-->
+                    <com.varunest.sparkbutton.SparkButton
+                        android:id="@+id/like"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:sparkbutton_activeImage="@drawable/filled"
+                        android:layout_centerInParent="true"
+                        app:sparkbutton_inActiveImage="@drawable/unfill"
+                        app:sparkbutton_iconSize="35dp"
+                        app:sparkbutton_primaryColor="@color/spark_secondary_color"
+                        app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
+
 
 
 

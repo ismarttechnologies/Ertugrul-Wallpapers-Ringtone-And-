@@ -113,7 +113,15 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
 
         dataList = new ArrayList<Ringtone>();
-        getRingtones();
+//        getRingtones();
+
+
+        for (int i=0; i<10; i++) {
+//            dataList.add(new Ringtone(""+i, "ringtone_"+i, "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3", "10"));
+            dataList.add(new Ringtone(""+i, "ringtone_"+i, "https://naghma.me/files/1472.mp3", "10"));
+        }
+
+        setAdapter();
 
         return root;
     }

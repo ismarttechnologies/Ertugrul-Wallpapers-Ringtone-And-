@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
@@ -39,7 +37,6 @@ allprojects {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'com.google.android.material:material:1.1.0'
@@ -57,7 +54,7 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
     implementation 'com.github.varunest:sparkbutton:1.0.6'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
-    compile 'com.github.varunest:sparkbutton:1.0.6'
+    implementation 'com.github.varunest:sparkbutton:1.0.6'
 
 
     implementation 'com.karumi:dexter:4.2.0'
@@ -66,6 +63,7 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.android.support:multidex:1.0.3'
 
+    implementation files('src/libs/mint-5.2.5.jar')
 
 }
 apply plugin: 'com.google.gms.google-services'

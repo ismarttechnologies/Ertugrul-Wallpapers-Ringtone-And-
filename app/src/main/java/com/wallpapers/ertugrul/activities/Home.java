@@ -1,5 +1,8 @@
 package com.wallpapers.ertugrul.activities;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
@@ -42,6 +45,8 @@ public class Home extends AppCompatActivity {
 //     toolbar = findViewById(R.id.toolbar_id);
 //     setSupportActionBar(toolbar);
 
+//        Mint.initAndStartSession(this.getApplication(), "7624c5f1");
+
      shareImage = findViewById(R.id.share_icon);
      shareImage.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -73,6 +78,9 @@ public class Home extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
 
     }
+
+
+
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

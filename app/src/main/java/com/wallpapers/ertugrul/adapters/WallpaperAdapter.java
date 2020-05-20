@@ -34,7 +34,7 @@ public class WallpaperAdapter extends BaseAdapter {
 
         View gridView;
 
-        if (convertView == null) {
+//        if (convertView == null) {
 
             gridView = new View(context);
 
@@ -58,9 +58,9 @@ public class WallpaperAdapter extends BaseAdapter {
                     .priority(Picasso.Priority.HIGH)
                     .into(imageView);
 
-        } else {
-            gridView = (View) convertView;
-        }
+//        } else {
+//            gridView = (View) convertView;
+//        }
 
         return gridView;
     }

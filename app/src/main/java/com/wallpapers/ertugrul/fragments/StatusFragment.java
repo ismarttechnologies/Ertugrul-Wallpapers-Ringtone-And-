@@ -120,13 +120,18 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
 
 //        getStatus();
 
-        for (int i=0; i<25; i++) {
+//        for (int i=0; i<25; i++) {
+//
+//            if (i!=0 && i%7==0){
+//                dataList.add(new Status("", "", "", "Banner"));
+//            }
 
-            if (i!=0 && i%7==0){
-                dataList.add(new Status("", "", "", "Banner"));
-            }
-            dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        }
+        dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMWYwM2Q1MjktNDYyNC00MmUyLWExYWYtNDEzZDA5N2RlZTVjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+//        }
 
         setAdapter();
 

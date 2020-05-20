@@ -16,14 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foreground="?attr/selectableItemBackground"
-            card_view:cardBackgroundColor="@color/white"
-            card_view:cardCornerRadius="@dimen/_15sdp"
-            card_view:cardElevation="@dimen/_4sdp"
-            card_view:cardMaxElevation="@dimen/_4sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginBottom="@dimen/_80sdp"
-            android:layout_marginLeft="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_15sdp">
+            card_view:cardBackgroundColor="@color/white">
 
             <ImageView
                 android:id="@+id/image"
@@ -74,12 +67,13 @@
 
             <com.varunest.sparkbutton.SparkButton
                 android:id="@+id/spark_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
                 app:sparkbutton_activeImage="@drawable/filled"
                 android:layout_centerInParent="true"
+                android:background="@drawable/floating_circle"
                 app:sparkbutton_inActiveImage="@drawable/unfill"
-                app:sparkbutton_iconSize="35dp"
+                app:sparkbutton_iconSize="@dimen/_30sdp"
                 app:sparkbutton_primaryColor="@color/spark_secondary_color"
                 app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
 

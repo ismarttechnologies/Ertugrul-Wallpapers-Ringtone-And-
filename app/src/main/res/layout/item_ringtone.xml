@@ -121,40 +121,46 @@
                 <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:weightSum="2"
                     android:orientation="horizontal"
                     android:layout_alignParentBottom="true"
+                    android:weightSum="2"
                     >
 
-                    <ImageView
-                        android:id="@+id/likes"
-                        android:layout_height="30dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:src="@drawable/like_icon"
+<!--                    <ImageView-->
+<!--                        android:id="@+id/likes"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:src="@drawable/like_icon"-->
 
-                        />
+<!--                        />-->
 
-                    <ImageView
-                        android:id="@+id/set_tone"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@drawable/like_icon"></ImageView>
 
 <!--                        />-->
                     <com.varunest.sparkbutton.SparkButton
-                        android:id="@+id/spark_button"
+                        android:id="@+id/likes"
                         android:layout_width="0dp"
-                        android:layout_height="50dp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_weight="1"
                         app:sparkbutton_activeImage="@drawable/filled"
-
+                         android:layout_gravity="center"
                         app:sparkbutton_inActiveImage="@drawable/unfill"
-                        app:sparkbutton_iconSize="35dp"
+                        app:sparkbutton_iconSize="@dimen/_27sdp"
                         app:sparkbutton_primaryColor="@color/spark_secondary_color"
                         app:sparkbutton_secondaryColor="@color/colorPrimaryDark" />
+
+
+                    <ImageView
+                        android:id="@+id/set_tone"
+                        android:layout_height="@dimen/_28sdp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/newmusic"/>
+
+
+
 
                 </LinearLayout>
 

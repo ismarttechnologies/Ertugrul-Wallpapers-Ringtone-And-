@@ -108,8 +108,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             Picasso.get()
                     .load(imageAddress)
                     .priority(Picasso.Priority.HIGH)
-                    .centerCrop()
-                    .resize(600, 450)
                     .into(new Target() {
                         @Override
                         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -227,7 +225,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
 
     public class DriverViewHolder extends RecyclerView.ViewHolder {
-        public ImageView  share, download, thumbnail;
+        public ImageView  share, thumbnail;
         public SparkButton like;
 
         View mBottomLayout;
@@ -246,7 +244,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             super(view);
              like= view.findViewById(R.id.like);
             share = view.findViewById(R.id.share);
-            download = view.findViewById(R.id.download);
+//            download = view.findViewById(R.id.download);
             thumbnail = view.findViewById(R.id.thumbnail);
             play_pause = view.findViewById(R.id.ivPlayPause);
             tvTime = view.findViewById(R.id.tvTime);

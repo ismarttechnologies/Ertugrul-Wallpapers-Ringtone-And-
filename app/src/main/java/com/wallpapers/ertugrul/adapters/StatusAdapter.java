@@ -25,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.universalvideoview.UniversalVideoView;
+import com.varunest.sparkbutton.SparkButton;
 import com.wallpapers.ertugrul.R;
 import com.wallpapers.ertugrul.model.Status;
 
@@ -226,7 +227,8 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
 
     public class DriverViewHolder extends RecyclerView.ViewHolder {
-        public ImageView like, share, download, thumbnail;
+        public ImageView  share, download, thumbnail;
+        public SparkButton like;
 
         View mBottomLayout;
         View mVideoLayout;
@@ -242,7 +244,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
         public DriverViewHolder(View view) {
             super(view);
-            like = view.findViewById(R.id.like);
+             like= view.findViewById(R.id.like);
             share = view.findViewById(R.id.share);
             download = view.findViewById(R.id.download);
             thumbnail = view.findViewById(R.id.thumbnail);

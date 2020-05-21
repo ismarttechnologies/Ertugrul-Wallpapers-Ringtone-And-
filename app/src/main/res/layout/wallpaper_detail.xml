@@ -74,8 +74,9 @@
 
             <com.varunest.sparkbutton.SparkButton
                 android:id="@+id/spark_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/floating_circle"
                 app:sparkbutton_activeImage="@drawable/filled"
                 android:layout_centerInParent="true"
                 app:sparkbutton_inActiveImage="@drawable/unfill"

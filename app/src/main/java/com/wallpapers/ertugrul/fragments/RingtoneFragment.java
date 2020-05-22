@@ -113,15 +113,14 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
 
         dataList = new ArrayList<Ringtone>();
-//        getRingtones();
+        getRingtones();
 
 
-        for (int i=0; i<10; i++) {
-//            dataList.add(new Ringtone(""+i, "ringtone_"+i, "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3", "10"));
-            dataList.add(new Ringtone(""+i, "ringtone_"+i, "https://naghma.me/files/1472.mp3", "10"));
-        }
-
-        setAdapter();
+//        for (int i=0; i<10; i++) {
+//            dataList.add(new Ringtone(""+i, "ringtone_"+i, "https://naghma.me/files/1472.mp3", "10"));
+//        }
+//
+//        setAdapter();
 
         return root;
     }
@@ -428,7 +427,7 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
-                .url("http://111.88.246.218/api/media/getAudio")
+                .url("http://111.88.247.11/api/media/getAudio")
                 .get()
                 .build();
 
@@ -461,9 +460,11 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
                             JSONObject obj=new JSONObject(requestResult);
                             JSONArray data_array=obj.optJSONArray("Result");
 
+                            String name[];
                             if (data_array!=null && data_array.length()>0){
                                 for (int i=0; i<data_array.length(); i++) {
-                                    dataList.add(new Ringtone(data_array.getJSONObject(i).optString("Id"), data_array.getJSONObject(i).optString("FileName"), data_array.getJSONObject(i).optString("Url"), data_array.getJSONObject(i).optString("Download")));
+                                    name = data_array.getJSONObject(i).optString("FileName").split("\\.");
+                                    dataList.add(new Ringtone(data_array.getJSONObject(i).optString("Id"), name[0], data_array.getJSONObject(i).optString("Url"), data_array.getJSONObject(i).optString("Download")));
 //                                    dataList.add(new Ringtone(data_array.getJSONObject(i).optString("Id"), "ringtone"+data_array.getJSONObject(i).optString("Id"), "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3"));
                                 }
 
@@ -499,7 +500,7 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
-                .url("http://111.88.246.218/api/media/Download")
+                .url("http://111.88.247.11/api/media/Download")
                 .put(formBody)
                 .build();
 

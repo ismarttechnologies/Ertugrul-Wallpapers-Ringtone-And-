@@ -38,7 +38,7 @@
                 <FrameLayout
                     android:id="@+id/video_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_190sdp"
+                    android:layout_height="@dimen/_250sdp"
                     android:background="@android:color/black">
 
                     <com.universalvideoview.UniversalVideoView
@@ -57,7 +57,7 @@
 
                     <ImageView
                         android:id="@+id/thumbnail"
-                        android:layout_height="@dimen/_190sdp"
+                        android:layout_height="@dimen/_250sdp"
                         android:layout_width="match_parent"
                         android:background="@color/colorPrimaryDark"
                         android:scaleType="fitXY"

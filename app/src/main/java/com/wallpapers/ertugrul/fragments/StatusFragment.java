@@ -118,22 +118,15 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
 
         dataList = new ArrayList<Status>();
 
-//        getStatus();
+        getStatus();
 
-//        for (int i=0; i<25; i++) {
+//        dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+//        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+//        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+//        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
+//        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMWYwM2Q1MjktNDYyNC00MmUyLWExYWYtNDEzZDA5N2RlZTVjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
 //
-//            if (i!=0 && i%7==0){
-//                dataList.add(new Status("", "", "", "Banner"));
-//            }
-
-        dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMTYyZDhiOTgtYWJkMC00OGI1LTg4NzUtMTM2YzRiMDg4NzZjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_SY1000_SX1500_AL_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-        dataList.add(new Status("video1", "https://m.media-amazon.com/images/M/MV5BMWYwM2Q1MjktNDYyNC00MmUyLWExYWYtNDEzZDA5N2RlZTVjXkEyXkFqcGdeQXVyNDg4MjkzNDk@._V1_.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
-//        }
-
-        setAdapter();
+//        setAdapter();
 
         return root;
     }
@@ -215,7 +208,7 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
         //OkHttpClient okHttpClient = OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
-                .url("http://111.88.246.218/api/media/getVideo")
+                .url("http://111.88.247.11/api/media/getVideo")
                 .get()
                 .build();
 
@@ -257,16 +250,18 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
                             JSONObject obj=new JSONObject(requestResult);
                             JSONArray data_array=obj.optJSONArray("Result");
 
+                            String name[];
                             if (data_array!=null && data_array.length()>0){
                                 for (int i=0; i<data_array.length(); i++) {
 
                                     if (i!=0 && i%3==0){
                                         dataList.add(new Status("", "", "Banner"));
-
                                     }
+                                    name = data_array.getJSONObject(i).optString("FileName").split("\\.");
+
 //                                    dataList.add(new Status("video1", "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", "https://media.istockphoto.com/videos/the-helicopter-left-skiers-on-the-slope-of-the-mountain-and-flew-a-video-id1126651601"));
 
-                                    dataList.add(new Status("Wallpaper"+data_array.getJSONObject(i).optString("Id"), "https://mmnews.tv/wp-content/uploads/2020/04/turkish.jpg", data_array.getJSONObject(i).optString("Url")));
+                                    dataList.add(new Status(name[0], data_array.getJSONObject(i).optString("WallpaperType"), data_array.getJSONObject(i).optString("Url")));
                                 }
 
                                 setAdapter();

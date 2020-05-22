@@ -3,8 +3,10 @@ package com.wallpapers.ertugrul.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,6 +34,7 @@ import com.wallpapers.ertugrul.model.Status;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import at.grabner.circleprogress.CircleProgressView;
@@ -104,29 +107,36 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 //                .into(holder.thumbnail);
 
 
+            try {
+                Bitmap bmp = retriveVideoFrameFromVideo(list_data.get(position).getUrl());
+                holder.thumbnail.setImageBitmap(bmp);
 
-            Picasso.get()
-                    .load(imageAddress)
-                    .priority(Picasso.Priority.HIGH)
-                    .into(new Target() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                            list_data.get(position).setBitmap(bitmap);
-                            holder.thumbnail.setImageBitmap(bitmap);
-                        }
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
 
-                        @Override
-                        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                            e.printStackTrace();
-
-                        }
-
-                        @Override
-                        public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-
-                        }
-                    });
+//            Picasso.get()
+//                    .load(imageAddress)
+//                    .priority(Picasso.Priority.HIGH)
+//                    .into(new Target() {
+//                        @Override
+//                        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+//                            list_data.get(position).setBitmap(bitmap);
+//                            holder.thumbnail.setImageBitmap(bitmap);
+//                        }
+//
+//                        @Override
+//                        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+//                            e.printStackTrace();
+//
+//                        }
+//
+//                        @Override
+//                        public void onPrepareLoad(Drawable placeHolderDrawable) {
+//
+//
+//                        }
+//                    });
 
 
 //            holder.like.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +216,32 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
         }
 
 
+    }
+
+
+    public static Bitmap retriveVideoFrameFromVideo(String videoPath) throws Throwable
+    {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever mediaMetadataRetriever = null;
+        try
+        {
+            mediaMetadataRetriever = new MediaMetadataRetriever();
+            if (Build.VERSION.SDK_INT >= 14)
+                mediaMetadataRetriever.setDataSource(videoPath, new HashMap<String, String>());
+            else
+                mediaMetadataRetriever.setDataSource(videoPath);
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.getFrameAtTime();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)" + e.getMessage());
+
+        } finally {
+            if (mediaMetadataRetriever != null) {
+                mediaMetadataRetriever.release();
+            }
+        }
+        return bitmap;
     }
 
     @Override

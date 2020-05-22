@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.universalvideoview.UniversalVideoView;
+import com.varunest.sparkbutton.SparkButton;
 import com.wallpapers.ertugrul.R;
 import com.wallpapers.ertugrul.model.Ringtone;
 import com.wallpapers.ertugrul.model.Status;
@@ -120,14 +121,14 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
             }
         });
 
-        holder.likes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                OnItemListner.likeRingtone(list_data.get(position));
-
-            }
-        });
+//        holder.likes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                OnItemListner.likeRingtone(list_data.get(position));
+//
+//            }
+//        });
 
 
     }
@@ -146,7 +147,7 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
         View mVideoLayout;
         UniversalVideoView mVideoView;
         ImageView play_pause;
-        ImageView likes;
+        SparkButton likes;
         TextView tvTime;
         SeekBar seekBar;
         CircleProgressView progress_dialog;

@@ -108,8 +108,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             Picasso.get()
                     .load(imageAddress)
                     .priority(Picasso.Priority.HIGH)
-                    .centerCrop()
-                    .resize(600, 450)
                     .into(new Target() {
                         @Override
                         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -131,16 +129,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
                     });
 
 
-            holder.like.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                OnItemListner.onShareImage(list_data.get(position).getBitmap());
-
-                    Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
-                    holder.like.startAnimation(pulse);
-
-                }
-            });
+//            holder.like.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                OnItemListner.onShareImage(list_data.get(position).getBitmap());
+//
+//                    Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
+//                    holder.like.startAnimation(pulse);
+//
+//                }
+//            });
 
 
             holder.play_pause.setOnClickListener(new View.OnClickListener() {
@@ -227,7 +225,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 
 
     public class DriverViewHolder extends RecyclerView.ViewHolder {
-        public ImageView  share, download, thumbnail;
+        public ImageView  share, thumbnail;
         public SparkButton like;
 
         View mBottomLayout;
@@ -246,7 +244,7 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
             super(view);
              like= view.findViewById(R.id.like);
             share = view.findViewById(R.id.share);
-            download = view.findViewById(R.id.download);
+//            download = view.findViewById(R.id.download);
             thumbnail = view.findViewById(R.id.thumbnail);
             play_pause = view.findViewById(R.id.ivPlayPause);
             tvTime = view.findViewById(R.id.tvTime);

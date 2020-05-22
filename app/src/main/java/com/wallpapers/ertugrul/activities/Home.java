@@ -55,7 +55,7 @@ public class Home extends AppCompatActivity {
              Intent myIntent=new Intent(Intent.ACTION_SEND);
              myIntent.setType("text/plain");
              String sharebody="Ertugrul Wallpapers, Ringtones and Status";
-             String sharesub="Your friend is inviting you to download Ertugrul Wallpapers, Ringtones and Status application from play store, \n\n"
+             String sharesub="Download Ertugrul Wallpapers, Ringtones and Video Status application from play store, \n\n"
                      +"https://play.google.com/store/apps/details?id=" + appPackageName;
              myIntent.putExtra(Intent.EXTRA_SUBJECT,sharebody);
              myIntent.putExtra(Intent.EXTRA_TEXT,sharesub);

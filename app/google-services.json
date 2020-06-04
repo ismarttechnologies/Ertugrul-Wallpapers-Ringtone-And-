@@ -72,9 +72,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923791201286:android:da32e3fe48f3f374825f87",
+        "mobilesdk_app_id": "1:923791201286:android:e2b5c6b8fd0e4acf825f87",
         "android_client_info": {
-          "package_name": "com.team.my"
+          "package_name": "com.status.ertugrul"
         }
       },
       "oauth_client": [
@@ -104,9 +104,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923791201286:android:e5fc1ba814827e64825f87",
+        "mobilesdk_app_id": "1:923791201286:android:da32e3fe48f3f374825f87",
         "android_client_info": {
-          "package_name": "com.wallpapers.ertugrul"
+          "package_name": "com.team.my"
         }
       },
       "oauth_client": [

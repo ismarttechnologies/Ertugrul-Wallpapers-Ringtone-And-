@@ -136,16 +136,16 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.DriverView
 //                    });
 
 
-            holder.like.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                OnItemListner.onShareImage(list_data.get(position).getBitmap());
-
-                    Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
-                    holder.like.startAnimation(pulse);
-
-                }
-            });
+//            holder.like.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                OnItemListner.onShareImage(list_data.get(position).getBitmap());
+//
+//                    Animation pulse = AnimationUtils.loadAnimation(context, R.anim.like_animation);
+//                    holder.like.startAnimation(pulse);
+//
+//                }
+//            });
 
 
             holder.play_pause.setOnClickListener(new View.OnClickListener() {

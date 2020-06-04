@@ -195,7 +195,7 @@ public class WallpaperFragment extends BaseFragment implements MultiplePermissio
         //OkHttpClient okHttpClient = OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final Request request = new Request.Builder()
-                .url("http://111.88.244.77/api/media/getimage")
+                .url("http://test.perfactcode.com/api/media/getimage")
                 .get()
                 .build();
 

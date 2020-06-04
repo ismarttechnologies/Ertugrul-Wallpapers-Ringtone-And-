@@ -427,7 +427,7 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
-                .url("http://111.88.247.11/api/media/getAudio")
+                .url("http://test.perfactcode.com")
                 .get()
                 .build();
 

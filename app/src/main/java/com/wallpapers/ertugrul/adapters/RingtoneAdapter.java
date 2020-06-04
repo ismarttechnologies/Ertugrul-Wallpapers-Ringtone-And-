@@ -125,7 +125,7 @@ public class RingtoneAdapter extends RecyclerView.Adapter<RingtoneAdapter.Driver
 //            @Override
 //            public void onClick(View v) {
 //
-//                OnItemListner.likeRingtone(list_data.get(position));
+//                 OnItemListner.likeRingtone(list_data.get(position));
 //
 //            }
 //        });

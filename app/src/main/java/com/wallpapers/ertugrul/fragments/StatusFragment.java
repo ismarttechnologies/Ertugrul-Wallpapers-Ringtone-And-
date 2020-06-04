@@ -208,7 +208,7 @@ public class StatusFragment extends BaseFragment implements StatusAdapter.OnItem
         //OkHttpClient okHttpClient = OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final OkHttpClient okHttpClient= OkhttpUtilities.getTrustedHttpClient(new OkHttpClient());
         final com.squareup.okhttp.Request request = new com.squareup.okhttp.Request.Builder()
-                .url("http://111.88.247.11/api/media/getVideo")
+                .url("http://test.perfactcode.com")
                 .get()
                 .build();
 

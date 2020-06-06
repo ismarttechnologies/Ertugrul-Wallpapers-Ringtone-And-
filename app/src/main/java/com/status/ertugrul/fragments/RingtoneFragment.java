@@ -97,12 +97,12 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
 //        });
 
         ringtone_listing = root.findViewById(R.id.ringtone_listing);
-        progress_bar = (CircleProgressView) root.findViewById(R.id.donut_progress);
-        progress_bar.setBarColor(getResources().getColor(R.color.colorAccent));
-        progress_bar.setRimColor(getResources().getColor(R.color.colorPrimary));
-        progress_bar.setFillCircleColor(getResources().getColor(R.color.white));
-        progress_bar.setShowTextWhileSpinning(true); // Show/hide text in spinning mode
-        progress_bar.setTextSize(25);
+//        progress_bar = (CircleProgressView) root.findViewById(R.id.donut_progress);
+//        progress_bar.setBarColor(getResources().getColor(R.color.white));
+//        progress_bar.setRimColor(getResources().getColor(R.color.colorPrimary));
+//        progress_bar.setFillCircleColor(getResources().getColor(R.color.white));
+//        progress_bar.setShowTextWhileSpinning(true); // Show/hide text in spinning mode
+//        progress_bar.setTextSize(25);
 
 
         dataList = new ArrayList<Ringtone>();
@@ -303,20 +303,16 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
                 }
                 int progress = download.getProgress();
                 Log.d("DOWNLOAD PREGRESS", " "+progress);
-                progress_bar.setVisibility(View.VISIBLE);
-                progress_bar.setValueAnimated(progress);
-                progress_bar.setText(""+progress);
-
-
-
-//                progress_bar.setSpinSpeed(progress);
+//                progress_bar.setVisibility(View.VISIBLE);
+//                progress_bar.setValueAnimated(progress);
+//                progress_bar.setText(""+progress);
 
 
                 if (progress==100) {
                     fetch.close();
 
-                    progress_bar.stopSpinning();
-                    progress_bar.setVisibility(View.GONE);
+//                    progress_bar.stopSpinning();
+//                    progress_bar.setVisibility(View.GONE);
                     setAsRingtone(fileUri);
                 }
             }
@@ -353,11 +349,13 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
             @Override
             public void call(@NotNull Request result) {
                 //Request successfully Queued for download
-                Toast.makeText(getContext(), "Started successfully", Toast.LENGTH_SHORT).show();
 
-                progress_bar.setVisibility(View.VISIBLE);
-                progress_bar.setValueAnimated(3);
-                progress_bar.setText(""+3);
+                showProgressDialog(getResources().getString(R.string.ringtone_setting));
+
+//                Toast.makeText(getContext(), "Started successfully", Toast.LENGTH_SHORT).show();
+//                progress_bar.setVisibility(View.VISIBLE);
+//                progress_bar.setValueAnimated(3);
+//                progress_bar.setText(""+3);
 
             }
 
@@ -402,7 +400,8 @@ public class RingtoneFragment  extends BaseFragment implements RingtoneAdapter.O
                 }
         );
 
-        Toast.makeText(getContext(), "Ringtone has been set successfully", Toast.LENGTH_SHORT).show();
+        hideprogressDialog();
+        Toast.makeText(getContext(), "Ringtone changed successfully", Toast.LENGTH_SHORT).show();
 
         return true;
     }

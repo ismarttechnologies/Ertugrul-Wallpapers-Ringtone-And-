@@ -96,10 +96,14 @@ public class BaseFragment extends Fragment {
 
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setIndeterminate(true);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setMessage(message);
             progressDialog.setCancelable(false);
             progressDialog.show();
         } else {
+            progressDialog.setIndeterminate(true);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(message);
             progressDialog.show();

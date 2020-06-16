@@ -52,7 +52,7 @@
                         android:layout_height="120dp"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
-                        android:src="@drawable/audio_gif"
+                        android:src="@drawable/ringtone_gif"
                         />
 
 
@@ -88,6 +88,7 @@
                             android:id="@+id/ivPlayPause"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
+                            android:padding="@dimen/_3sdp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/play" />
 
@@ -98,6 +99,8 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/ivPlayPause"
                             android:layout_toLeftOf="@+id/tvTime"
+                            android:thumbTint="@color/white"
+                            android:theme="@style/Progress_color"
                             />
 
 

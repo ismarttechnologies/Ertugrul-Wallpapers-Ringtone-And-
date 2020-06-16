@@ -104,6 +104,38 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:923791201286:android:a1eb9886a2cc3669825f87",
+        "android_client_info": {
+          "package_name": "com.statuswallpapers.ertugrul"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK_aB2Dor6S2IPZKgvJ3Oln_rWN5RJvug"
+        },
+        {
+          "current_key": "AIzaSyDFmKGDvFyMmIDVPGXzCAd5I0O9ZB_5aLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923791201286-vb6ljjjrhd7u6068bshc8n6nloabn6jo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:923791201286:android:da32e3fe48f3f374825f87",
         "android_client_info": {
           "package_name": "com.team.my"

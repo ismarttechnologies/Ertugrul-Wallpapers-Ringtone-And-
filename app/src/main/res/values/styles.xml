@@ -27,4 +27,10 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Progress_color" parent="Widget.AppCompat.SeekBar">
+            <item name="android:progressBackgroundTint">@color/blue</item>
+            <item name="android:progressTint">@color/white</item>
+            <item name="android:colorControlActivated">@color/blue</item>
+    </style>
+
 </resources>

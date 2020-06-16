@@ -38,7 +38,7 @@
                 <FrameLayout
                     android:id="@+id/video_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_250sdp"
+                    android:layout_height="@dimen/_300sdp"
                     android:background="@android:color/black">
 
                     <com.universalvideoview.UniversalVideoView
@@ -57,7 +57,7 @@
 
                     <ImageView
                         android:id="@+id/thumbnail"
-                        android:layout_height="@dimen/_250sdp"
+                        android:layout_height="@dimen/_300sdp"
                         android:layout_width="match_parent"
                         android:background="@color/colorPrimaryDark"
                         android:scaleType="fitXY"
@@ -98,6 +98,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
+                            android:padding="@dimen/_3sdp"
                             android:background="@drawable/play" />
 
 
@@ -107,6 +108,8 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@+id/ivPlayPause"
                             android:layout_toLeftOf="@+id/tvTime"
+                            android:thumbTint="@color/white"
+                            android:theme="@style/Progress_color"
                             />
 
 
@@ -175,7 +178,7 @@
                         android:id="@+id/share"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="@dimen/_26sdp"
                         android:src="@drawable/share_icon" />
 
                 </LinearLayout>
@@ -194,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             ads:adSize="MEDIUM_RECTANGLE"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            ads:adUnitId="ca-app-pub-3146306479466166/6343432058"
             android:visibility="gone"
             >
         </com.google.android.gms.ads.AdView>
